@@ -8,6 +8,14 @@ import daum from './daum';
 import krx from './krx';
 import tensorflow from './tensorflow';
 
+import hoon from './hoon';
+import jaeeun from './jaeeun';
+import jian from './jian';
+import jiwon from './jiwon';
+import sewon from './sewon';
+import soo from './soo';
+import youngkyun from './youngkyun';
+
 import PageNotFound from '../components/PageNotFound.vue';
 import PageCant from '../components/PageCant.vue';
 import NotSupported from '../components/NotSupported.vue';
@@ -70,6 +78,13 @@ if (isSupport()) {
   ...daum,
   ...krx,
   ...tensorflow,
+  ...hoon,
+  ...jaeeun,
+  ...jian,
+  ...jiwon,
+  ...sewon,
+  ...soo,
+  ...youngkyun,
   {
     path: '/cant',
     component: PageCant

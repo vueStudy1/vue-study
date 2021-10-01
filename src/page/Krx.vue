@@ -18,8 +18,6 @@ import KrxAll from '@/components/Button/KrxAll.vue';
 import KrxIndividual from '@/components/Button/KrxIndividual.vue';
 import LineChart from '@/components/Chart/LineChart.vue';
 
-import Tensorflow2 from '@/components/Tensorflow/Tensorflow2';
-
 @Component({
  components: {
    KrxAll,
@@ -32,10 +30,6 @@ import Tensorflow2 from '@/components/Tensorflow/Tensorflow2';
 export default class Krx extends Vue {
   krxAll: any = null;
   krxIndividual: any = null;
-
-  created() {
-    Tensorflow2.run();
-  }
 }
 </script>
 
