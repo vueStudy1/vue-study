@@ -1,0 +1,1 @@
+declare module 'partial-js';
