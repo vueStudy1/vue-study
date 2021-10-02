@@ -6,11 +6,11 @@ import Home from '@/page/Home.vue';
 const route = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/index',
     component: BaseContainer,
     children: [
       {
-        path: 'home',
+        path: 'index',
         name: 'Home',
         component: Home,
       },

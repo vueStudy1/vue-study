@@ -9,7 +9,7 @@ const PROXY_ORIGIN = 'https://yg01.herokuapp.com/';
 
 const http = {
   daum: axios.create({
-    baseURL: DAUM,
+    baseURL: PROXY + DAUM,
     headers: {
       Accept: 'application/json'
     }
