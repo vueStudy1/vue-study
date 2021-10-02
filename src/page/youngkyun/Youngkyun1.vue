@@ -1,6 +1,6 @@
 <template>
   <div>
-    1일차dfgd
+    1일차
   </div>
 </template>
 
@@ -18,6 +18,6 @@ import { mapGetters } from 'vuex';
  computed: mapGetters({
  }),
 })
-export default class Youngkyun1 extends Vue {
+export default class CrrentMonth extends Vue {
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    영균 페이지
+    <Kospi />
   </div>
 </template>
 
@@ -12,8 +12,11 @@
 import { Vue, Component } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 
+import Kospi from './components/Kospi.vue';
+
 @Component({
  components: {
+  Kospi,
  },
  computed: mapGetters({
  }),

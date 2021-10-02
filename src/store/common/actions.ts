@@ -3,6 +3,11 @@ import { AxiosResponse } from 'axios';
 import _ from 'lodash';
 
 export default {
+  daumKosdaqKospi({ commit }: any, data: any): Promise<AxiosResponse> {
+    return http.daum.get('/api/quotes/today?type=DOMESTIC').then((res: any) => {
+      return res;
+    });
+  },
   daumRank({ commit }: any, data: any): Promise<AxiosResponse> {
     return http.daum.get('/api/search/ranks?limit=10').then((res: any) => {
       return res;
