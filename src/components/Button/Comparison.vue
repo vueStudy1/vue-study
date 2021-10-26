@@ -1,15 +1,6 @@
 <template>
   <div class="input-group">
-    <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" v-model="code">
-      <option selected>Choose...</option>
-      <option value="A303530">A303530</option>
-      <option value="A005930">삼성전자</option>
-      <option value="A035420">네이버</option>
-      <option value="A035720">카카오</option>
-    </select>
-    <button class="btn btn-outline-secondary" type="button" @click="onClick">DaumDays</button>
-    <button class="btn btn-outline-secondary" type="button" @click="onClear">clear</button>
-    <b-table striped hover :items="daumDays" :fields="fields" :busy="isBusy">
+    <b-table striped hover :items="DaumTimes" :fields="fields" :busy="isBusy">
       <template #table-busy>
         <div class="text-center text-danger my-2">
         <b-spinner class="align-middle"></b-spinner>
@@ -21,12 +12,13 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
-import axios from 'axios';
-import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 
-interface DaumDay {
+import _ from 'partial-js';
+
+// vuefire 연동
+interface DaumTime {
   accTradePrice: number; // 거래대금
   accTradeVolume: number; // 거래량
   change: string; // ?
@@ -46,29 +38,6 @@ interface DaumDay {
   tradeTime: string; // 시간
 }
 
-Vue.config.productionTip = false
-Vue.use(BootstrapVue);
-Vue.use(BootstrapVueIcons);
-
-const DAUM = 'https://finance.daum.net';
-const KRX = 'http://data.krx.co.kr';
-const PROXY = 'https://yg01.herokuapp.com/';
-const PROXY_ORIGIN = 'https://yg01.herokuapp.com/';
-const HTTP = {
-  daum: axios.create({
-    baseURL: PROXY + DAUM,
-    headers: {
-      Accept: 'application/json'
-    }
-  }),
-  krx: axios.create({
-    baseURL: PROXY + KRX,
-    headers: {
-      Accept: 'application/json',
-      Origin: PROXY_ORIGIN,
-    }
-  }),
-};
 const FIELDS = [
   { key: 'accTradePrice', label: '거래대금' },
   { key: 'accTradeVolume', label: '거래량' },
@@ -95,26 +64,42 @@ const FIELDS = [
   computed: mapGetters({
   }),
 })
-export default class DaumDays extends Vue {
-  code:string = 'A303530';
-  daumDays: DaumDay[] = [];
-  fields: any = FIELDS;
-  isBusy: boolean = false;
+export default class Comparison extends Vue {
+  @Prop()
+  private todayData!: DaumTime[];
 
-  async onClick() {
-    const PARAM: any = {
-      symbolCode: this.code,
-      page: 1,
-      perPage: 100,
-      pagination: true,
-    };
-    this.isBusy = true;
-    this.daumDays = (await HTTP.daum.get(`/api/quote/${this.code}/days`, {params: PARAM})).data.data;
-    this.isBusy = false;
+  @Prop()
+  private yesterdayData!: DaumTime[];
+
+
+  todayTime: string = '09:00';
+
+  mounted() {
+    setTimeout(() => {
+      let today= new Date();
+      today.setMinutes(today.getMinutes() - 1);
+      this.todayTime= today.getHours() + ":" + today.getMinutes();
+    }, 1000 * 60);
   }
 
-  onClear() {
-    this.daumDays = [];
+  get timeYesterdayData() {
+    let time = this.todayTime;
+    
+    return _.go(this.todayData,
+      function(datas: any) {
+        return _.filter(datas, function(u:any) { return u.tradeTime.substring(0,7) == time; });
+      },
+    );
+  }
+
+  get timeTodayData() {
+    let time = this.todayTime;
+    
+    return _.go(this.todayData,
+      function(datas: any) {
+        return _.filter(datas, function(u:any) { return u.tradeTime.substring(0,7) == time; });
+      },
+    );
   }
 }
 </script>

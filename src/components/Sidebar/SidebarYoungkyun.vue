@@ -8,12 +8,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" @click="onClickNavLink('YoungKyun1')" :class="{ active: isHere('YoungKyun1') }">
+          <a class="nav-link" @click="onClickNavLink('Youngkyun1')" :class="{ active: isHere('Youngkyun1') }">
             1일차
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" @click="onClickNavLink('YoungKyun2')" :class="{ active: isHere('YoungKyun2') }">
+          <a class="nav-link" @click="onClickNavLink('Youngkyun2')" :class="{ active: isHere('Youngkyun2') }">
             2일차
           </a>
         </li>
@@ -41,16 +41,4 @@ export default class SidebarYoungkyun extends Vue {
 </script>
 
 <style lang="css">
-.nav-link:hover {
-  background-color: #0b5ed7;
-  color: #fff;
-  border-radius: 0.25rem;
-  cursor: pointer;
-}
-.active {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-  color: #fff;
-  border-radius: 0.25rem;
-}
 </style>

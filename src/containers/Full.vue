@@ -1,7 +1,12 @@
 <template>
-  <div class="app" :class="{ 'editor-page': $route.name === 'DashboardEditor' || $route.name === 'ProcessEditor' }">
+  <div>
     <AppHeader />
-    <div class="container-fluid">
+    <article class="app-body">
+      <router-view></router-view>
+    </article>
+    <AppSidebar />
+
+    <!-- <div class="container-fluid">
       <div class="row">
         <AppSidebarHoon v-if="$route.name.includes('Hoon')" />
         <AppSidebarJaeeun v-else-if="$route.name.includes('Jaeeun')" />
@@ -15,9 +20,20 @@
           <router-view></router-view>
         </main>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
+
+<style scoped>
+article {
+  width: calc(100vw - 150px);
+  height: calc(100vh - 32px);
+  position: fixed;
+  top: 32px;
+  left: 150px;
+  background-color: rgba(0, 0, 0, 0.842);
+}
+</style>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';

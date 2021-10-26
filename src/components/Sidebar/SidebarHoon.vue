@@ -41,16 +41,4 @@ export default class SidebarHoon extends Vue {
 </script>
 
 <style lang="css">
-.nav-link:hover {
-  background-color: #0b5ed7;
-  color: #fff;
-  border-radius: 0.25rem;
-  cursor: pointer;
-}
-.active {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
-  color: #fff;
-  border-radius: 0.25rem;
-}
 </style>

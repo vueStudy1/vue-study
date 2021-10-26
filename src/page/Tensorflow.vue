@@ -1,6 +1,6 @@
 <template>
   <main>
-    Tensorflow {{a}}
+    Tensorflow
   </main>
 </template>
 
@@ -12,8 +12,6 @@
 import { Vue, Component } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 
-//import tf from '@tensorflow/tfjs';
-
 @Component({
  components: {
  },
@@ -21,6 +19,5 @@ import { mapGetters } from 'vuex';
  }),
 })
 export default class Tensorflow extends Vue {
-  //a: any = tf.tensor([1, 2, 3, 4])
 }
 </script>
