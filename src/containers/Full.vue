@@ -1,10 +1,10 @@
 <template>
   <div>
-    <AppHeader />
+    <AppHeader2 />
     <article class="app-body">
       <router-view></router-view>
     </article>
-    <AppSidebar />
+    <AppSidebar2 />
 
     <!-- <div class="container-fluid">
       <div class="row">
@@ -27,9 +27,9 @@
 <style scoped>
 article {
   width: calc(100vw - 150px);
-  height: calc(100vh - 32px);
+  height: calc(100vh - 56px);
   position: fixed;
-  top: 32px;
+  top: 56px;
   left: 150px;
   background-color: rgba(0, 0, 0, 0.842);
 }
@@ -37,12 +37,14 @@ article {
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { AppHeader, AppSidebar, AppSidebarHoon, AppSidebarJaeeun, AppSidebarJian, AppSidebarJiwon, AppSidebarSewon, AppSidebarSoo, AppSidebarYoungkyun } from '../components/index';
+import { AppHeader, AppHeader2, AppSidebar, AppSidebar2, AppSidebarHoon, AppSidebarJaeeun, AppSidebarJian, AppSidebarJiwon, AppSidebarSewon, AppSidebarSoo, AppSidebarYoungkyun } from '../components/index';
 
 @Component({
   components: {
     AppHeader,
+    AppHeader2,
     AppSidebar,
+    AppSidebar2,
     AppSidebarHoon,
     AppSidebarJaeeun,
     AppSidebarJian,
@@ -52,5 +54,6 @@ import { AppHeader, AppSidebar, AppSidebarHoon, AppSidebarJaeeun, AppSidebarJian
     AppSidebarYoungkyun,
   },
 })
-export default class Full extends Vue {}
+export default class Full extends Vue {
+}
 </script>

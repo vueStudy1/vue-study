@@ -1,0 +1,25 @@
+<mxfile host="65bd71144e">
+    <diagram id="M_BzZV5xm2q3AZ3RkC8H" name="페이지-1">
+        <mxGraphModel dx="1129" dy="516" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="8027" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="데이터 모듈&lt;br&gt;&lt;br&gt;코스피 전체업종 ( )&lt;br&gt;코스닥 전체업종 ( )&lt;br&gt;특정 카테고리 ( )&lt;br&gt;특정 종목 종합 ( )&lt;br&gt;시간별 주가 ( )" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="10" width="120" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="side bar" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="450" y="130" width="110" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="업종 모듈" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="130" width="70" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="카테고리 모듈" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="210" y="130" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="시간별 주가 모듈" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="130" width="110" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

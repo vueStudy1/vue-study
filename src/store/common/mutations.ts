@@ -7,5 +7,8 @@ export default {
   },
   setDb(state: any, payload: any) {
     state.db = payload;
-  }
+  },
+  setCodeDayDatas(state: any, payload: any) {
+    state.codeDayDatas = payload;
+  },
 };

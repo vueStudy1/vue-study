@@ -3,11 +3,11 @@ import Vue from 'vue';
 
 const DAUM = 'https://finance.daum.net';
 const KRX = 'http://data.krx.co.kr';
-const PROXY = 'https://yg01.herokuapp.com/';
-const PROXY_ORIGIN = 'https://yg01.herokuapp.com/';
+const PROXY = 'https://yg02.herokuapp.com/';
+const PROXY_ORIGIN = 'https://yg02.herokuapp.com/';
 
 const PROXYS = {
-  yg01 : 'https://yg01.herokuapp.com/',
+  yg01 : 'https://yg02.herokuapp.com/',
   yg02 : 'https://yg02.herokuapp.com/',
   yg03 : 'https://yg03.herokuapp.com/',
 }

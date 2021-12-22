@@ -7,7 +7,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
-import { initializeApp } from 'firebase/app';
+/* import { initializeApp } from 'firebase/app'; */
 
 /* const fbConfig = {
   apiKey: "AIzaSyADJodzMYyREz597FdqybAhe6KWGMXbKL8",
@@ -19,7 +19,7 @@ import { initializeApp } from 'firebase/app';
   measurementId: "G-9JJ88TFTYK"
 }; */
 
-const fbConfig = {
+/* const fbConfig = {
   apiKey: "AIzaSyDEs6DONgCYWI9PHVwoB6hdNpd6ZRwsyRY",
   authDomain: "vue-study2.firebaseapp.com",
   projectId: "vue-study2",
@@ -30,7 +30,7 @@ const fbConfig = {
 };
 
 
-initializeApp(fbConfig);
+initializeApp(fbConfig); */
 
 @Component({
   components: {
@@ -40,4 +40,10 @@ export default class App extends Vue {}
 </script>
 
 <style>
+.toast:not(.show) {
+  display: block;
+}
+.close {
+  display: none;
+}
 </style>

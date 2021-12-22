@@ -5,7 +5,7 @@
         <span class="title">삼성전자</span>
       </div>
       <div class="col-4 label"> 종목
-        <span class="title">5/300</span>
+        <span class="title">{{queue.fns.length}} / {{krxAll.length}}</span>
       </div>
       <div class="col-4 label"> 남은시간
         <span class="title">00:00:00</span>
@@ -26,10 +26,10 @@
       <div class="wrap">
         <div class="scroll">
 
-          <template v-for="krx, index in krxAll">
+          <template v-for="krx, index in queue.fns">
             <div class="row" :key="index">
-              <div class="col-2 label">{{krx.ISU_ABBRV}}</div>
-              <div class="col-10"><b-progress :value="0"></b-progress></div>
+              <div class="col-2 label">{{krx.ISU_ABBRV}} {{krx.progres}}</div>
+              <div class="col-10"><b-progress :value="krx.progress"></b-progress></div>
             </div>
           </template>
 
@@ -47,7 +47,7 @@
     </template>
   </b-modal>
 </template>
-<style>
+<style scoped>
 p {
   margin-top: 0;
   margin-bottom: 0;
@@ -62,11 +62,6 @@ p {
   background-color: #262626;
   border-bottom: 1px solid #5c5c5c;
   padding: 3px 6px;
-}
-.close {
-  background-color: var(--bs-gray-900);
-  border: 0;
-  color:#b2b2b2;
 }
 .modal-title {
   margin-bottom: 0;
@@ -98,8 +93,6 @@ p {
 .progress-bar {
   background-color: rgb(133, 133, 133);
 }
-</style>
-<style scoped>
 .row {
   --bs-gutter-x: 0;
 }
@@ -158,8 +151,8 @@ import { mapGetters } from 'vuex';
 import { YgFireStore } from '@/common';
 
 class Queue {
-  fns: any;
-  runState: boolean;
+  fns: any = [];
+  runState: boolean = false;
 
   constructor() {
     this.fns = [];
@@ -171,9 +164,17 @@ class Queue {
     //this.run(); // 큐가 들어 오면 바로 실행한다.
   }
 
+  queue() {
+    return this.fns[0];
+  }
+
   dequeue() { // 실행이 끝나면 dequeue()를 실행하도록 한다.
     //this.runState = false;
-    return this.fns.shift();
+    if(this.fns.length > 0) {
+      return this.fns.shift();
+    } else {
+      return null;
+    }
     // if(this.fns.length > 0) // 큐에 남아 있는 것이 있는 것을 확인 후 실행한다.
     //   this.run();
   }
@@ -184,6 +185,10 @@ class Queue {
       this.fns[0]();
     }
   }
+
+  clear() {
+    this.fns = [];
+  }
 }
 
 @Component({
@@ -192,17 +197,22 @@ class Queue {
   computed: mapGetters({
     selected: 'common/getSelected',
     db: 'common/getDb',
+    codeDayData: 'common/getCodeDayDatas',
   }),
 })
 export default class DataUpload extends Vue {
   @Prop()
   value!: boolean;
+  codeDayData!: any;
+
   temp: boolean = false;
 
   ygFireStore: any = null;
 
-  krxAll: any = [];
-  queue: any = new Queue();
+  krxAll: any = []; // 전체 데이터
+  queue: any = new Queue(); // 큐 데이터
+
+  codeDayDatas: any = {}; //코드별 일자별 데이터
 
   @Watch('value')
   onValue(value: boolean) {
@@ -212,16 +222,18 @@ export default class DataUpload extends Vue {
   async created() {
     this.ygFireStore = new YgFireStore();
     this.ygFireStore.setDb();
-    //this.ygFireStore.setDay();
+    
     console.log(await this.ygFireStore.isDay());
   }
 
   // 3:30반 이 되지 않았다면, 
   get isTime() {
     const now = new Date();
-    var hours = now.getHours();	// 시간
-    var minutes = now.getMinutes();	// 분
-    var seconds = now.getSeconds();	// 초
+    var hours = String(now.getHours()).padStart(2, '0');	// 시간
+    var minutes = String(now.getMinutes()).padStart(2, '0');	// 분
+    var seconds = String(now.getSeconds()).padStart(2, '0');	// 초
+
+    console.log(`15:30:59 < ${hours}:${minutes}:${seconds} = ${'15:30:59' < `${hours}:${minutes}:${seconds}`}`);
 
     return '15:30:59' < `${hours}:${minutes}:${seconds}`;
   }
@@ -232,13 +244,13 @@ export default class DataUpload extends Vue {
     if(!this.temp) {
       this.$emit('input', temp);
     } else {
-      if(await this.ygFireStore.isDay()) { // 저장 했다면...
-        console.log('이미 저장함...');
-      } else { // 저장 안했다면...
-        console.log('저장 안함');
+      //if(await this.ygFireStore.isDay()) { // 저장 했다면...
+      //  this.$bvToast.toast(`오늘 데이터는 이미 저장되었습니다.`, { title: '알림' });
+      //} else { // 저장 안했다면...
+        this.$bvToast.toast(`저장된 데이터가 없어 업로드 시작합니다.`, { title: '알림' });
         await this.getAllCd(); // 전종목
         this.addQueue();
-      }
+      //}
       console.log(await this.ygFireStore.isDay());
     }
   }
@@ -271,7 +283,9 @@ export default class DataUpload extends Vue {
   // 1. 전 종목 가져오기 (한국거래소) -> 각각 프로그래스바
   // 2. 1개의 큐에 종목을 넣기 (종목코드)
   addQueue () {
+    this.queue.clear();
     this.krxAll.forEach((element: any) => {
+      element.progress = 0;
       this.queue.enqueue(element);  
     });
 
@@ -282,8 +296,25 @@ export default class DataUpload extends Vue {
 
   // 10개의 service run
   async serviceRun() {
-    // 1. 큐에서 종목 하나 꺼내어 오면서 큐 제거
-    const que = this.queue.dequeue();
+    // 1. 큐에서 종목 하나 꺼내어 오면서 큐 제거 (큐 제거는 나중에)
+    const que = this.queue.queue();
+    if(que == null) {
+      this.$bvToast.toast(`데이터를 업로드가 완료 되었습니다.`, { title: '알림' });
+
+      // 전종목을 vuex에 저장하기
+      // 오늘 날짜 저장하기
+      this.ygFireStore.setDay();
+      console.log('오늘 날짜 저장하기');
+      this.$store.commit('common/setCodeDayDatas', this.codeDayDatas);
+      console.log('전종목을 vuex에 저장하기');
+
+      // vuex에 저장된걸 firebase에 저장
+      // code 대신 날짜로..
+      await this.ygFireStore.setFinance(this.ygFireStore.day, this.codeDayDatas);
+      console.log('vuex에 저장된걸 firebase에 저장');
+
+      return;
+    }
 
     // 2. 종목으로 시간대별 데이터 가져오기 (다음), 
     const PARAM: any = {
@@ -296,18 +327,18 @@ export default class DataUpload extends Vue {
     const DaumTimes = [];
     const res = (await this.$store.dispatch('common/daumTimes', PARAM)).data;
     DaumTimes.push(...res.data);
-    
+
     for(let i = 1; i < res.totalPages; i++) {
-      const PARAM: any = {
-        symbolCode: `A${que.ISU_SRT_CD}`,
-        page: i+1,
-        perPage: 100,
-        pagination: true,
-      };
+      PARAM.page = i+1;
+      this.queue.fns.splice(0, 1, {...que, progress: i / res.totalPages * 100});
       DaumTimes.push(...(await this.$store.dispatch('common/daumTimes', PARAM)).data.data);
     }
+    this.queue.fns.splice(0, 1, {...que, progress: 100});
+    this.queue.dequeue();
 
-    //this.serviceRun();
+    this.codeDayDatas[`A${que.ISU_SRT_CD}`] = DaumTimes;
+
+    this.serviceRun();
     // 3. total page 만큼 조회하여 merge (한번이라도 실패하면 service 중지)
   }
 
@@ -325,3 +356,4 @@ export default class DataUpload extends Vue {
   // 3. shift - (큐에 종목코드가 남아 있는 지 확인후) 종목코드 하나씩 빼고 뺀 종목코드 리턴
 }
 </script>
+

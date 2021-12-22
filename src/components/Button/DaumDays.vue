@@ -52,8 +52,8 @@ Vue.use(BootstrapVueIcons);
 
 const DAUM = 'https://finance.daum.net';
 const KRX = 'http://data.krx.co.kr';
-const PROXY = 'https://yg01.herokuapp.com/';
-const PROXY_ORIGIN = 'https://yg01.herokuapp.com/';
+const PROXY = 'https://yg02.herokuapp.com/';
+const PROXY_ORIGIN = 'https://yg02.herokuapp.com/';
 const HTTP = {
   daum: axios.create({
     baseURL: PROXY + DAUM,

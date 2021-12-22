@@ -14,7 +14,7 @@ const store = new Vuex.Store({
   },
   plugins: [
     createPersistedState({
-      paths: ['common.daumRank', 'common.selected'],
+      paths: ['common'],
     }),
   ],
 });

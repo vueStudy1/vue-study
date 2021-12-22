@@ -7,5 +7,8 @@ export default {
   },
   getDb (state: any) {
     return state.db;
+  },
+  getCodeDayDatas (state: any) {
+    return state.getCodeDayDatas;
   }
 };

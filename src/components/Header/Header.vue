@@ -1,12 +1,14 @@
 <template>
 <header>
   <div class="nav">
-    <div class="item">정영균</div>
-    <div class="item">박아름</div>
-    <div class="item">동그리</div>
-    <div class="item">냥냥이</div>
-    <div><b-button @click="modalShow = !modalShow">firebase server save</b-button></div>
-    <DataUpload v-model="modalShow"/>
+    <div class="item" @click="active = 'Youngkyun'; $router.push({name : 'Youngkyun'});" :class="{active : active == 'Youngkyun'}">정영균</div>
+    <div class="item" @click="active = 'pack'" :class="{active : active == 'pack'}">박아름</div>
+    <div class="item" @click="active = 'dong';" :class="{active : active == 'dong'}">동그리</div>
+    <div class="item" @click="active = 'nyang';" :class="{active : active == 'nyang'}">냥냥이</div>
+    <!-- 시간제한만 걸려있는데, 날짜 제한도 걸어야 함. -->
+    <!-- <div><b-button @click="modalShow = !modalShow" :disabled="!isTime">firebase server save</b-button></div> -->
+    <div><b-button @click="modalShow = !modalShow">firebase server save</b-button></div> <!-- 제한 품 -->
+    <DataUpload ref="modal" v-model="modalShow"/>
   </div>
 </header>
   <!-- <b-navbar type="dark" variant="dark">
@@ -65,7 +67,7 @@ header {
   height: 32px;
   background-color: #fff;
   border-bottom: 1px solid #e0e0e0;
-  z-index: 9999;
+  z-index: 1;
 }
 header .logo {
   position: absolute;
@@ -97,7 +99,7 @@ header .nav .item {
   padding: 3px 10px;
   margin: 4px 3px;
 }
-header .nav .item:hover {
+header .nav .item:hover, header .nav .item.active {
   background-color: rgb(80 80 80);
   border-radius: 28px;
   padding: 3px 10px;
@@ -132,15 +134,15 @@ import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import DataUpload from '@/components/popupWindow/DataUpload.vue';
 
 const PROXYS = {
-  yg01 : 'https://yg01.herokuapp.com/',
+  yg01 : 'https://yg02.herokuapp.com/',
   yg02 : 'https://yg02.herokuapp.com/',
   yg03 : 'https://yg03.herokuapp.com/',
 }
 
 const DAUM = 'https://finance.daum.net';
 const KRX = 'http://data.krx.co.kr';
-const PROXY = 'https://yg01.herokuapp.com/';
-const PROXY_ORIGIN = 'https://yg01.herokuapp.com/';
+const PROXY = 'https://yg02.herokuapp.com/';
+const PROXY_ORIGIN = 'https://yg02.herokuapp.com/';
 const HTTP = {
   proxy: axios.create({
     baseURL: DAUM,
@@ -203,8 +205,16 @@ export default class Header extends Vue {
 
   selectedCode: any = null;
 
+  $refs!: {
+    modal: DataUpload;
+  }
+
+  isTime: boolean = false;
+  active: string = '';
+
   mounted() {
     this.$store.commit('common/setDb', getFirestore());
+    this.isTime = this.$refs.modal.isTime;
   }
 
   async run() {

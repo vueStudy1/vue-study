@@ -26,7 +26,7 @@
 <style scoped>
 nav {
   position: fixed;
-  top: 32px;
+  top: 56px;
   left: 0;
   bottom: 0;
   width: 150px;
@@ -93,29 +93,10 @@ nav .navs .subtitle {
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { Daum } from '@/common';
 
 @Component({
   components: {},
 })
-export default class Sidebar extends Vue {
-  daum = new Daum();
-  kospi: any = Object;
-  kosdaq: any = Object;
-
-  async created() {
-    this.kospi = (await this.daum.kospi()).data.data;
-    this.kosdaq = (await this.daum.kosdaq()).data.data;
-  }
-
-  onClickNavLink(name: string) {
-    if (!this.isHere(name)) {
-      this.$router.push({ name: name });
-    }
-  }
-
-  isHere(name: string) {
-    return this.$route.name === name;
-  }
+export default class Sidebar2 extends Vue {
 }
 </script>
