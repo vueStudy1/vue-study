@@ -7,6 +7,12 @@ import store from './store';
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import { firestorePlugin } from 'vuefire';
 
+import ContextMenu from 'add-context-menu';
+import ContextMenuItem from 'add-context-menu';
+
+Vue.use(ContextMenu);
+Vue.use(ContextMenuItem);
+
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue);

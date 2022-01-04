@@ -10,5 +10,11 @@ export default {
   },
   getCodeDayDatas (state: any) {
     return state.getCodeDayDatas;
+  },
+  getProject (state: any) {
+    return state.project;
+  },
+  getTopbar (state: any) {
+    return state.topbar;
   }
 };

@@ -11,4 +11,10 @@ export default {
   setCodeDayDatas(state: any, payload: any) {
     state.codeDayDatas = payload;
   },
+  setProject(state: any, payload: any) {
+    state.project = payload;
+  },
+  setTopbar(state: any, payload: any) {
+    state.topbar = payload;
+  },
 };

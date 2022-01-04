@@ -26,11 +26,11 @@
 
 <style scoped>
 article {
-  width: calc(100vw - 150px);
+  width: calc(100vw - 250px);
   height: calc(100vh - 56px);
   position: fixed;
   top: 56px;
-  left: 150px;
+  left: 250px;
   background-color: rgba(0, 0, 0, 0.842);
 }
 </style>
