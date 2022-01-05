@@ -17,4 +17,7 @@ export default {
   setTopbar(state: any, payload: any) {
     state.topbar = payload;
   },
+  setSidebar(state: any, payload: any) {
+    state.sidebar = payload;
+  },
 };

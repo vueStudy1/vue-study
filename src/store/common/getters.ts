@@ -16,5 +16,8 @@ export default {
   },
   getTopbar (state: any) {
     return state.topbar;
-  }
+  },
+  getSidebar (state: any) {
+    return state.sidebar;
+  },
 };

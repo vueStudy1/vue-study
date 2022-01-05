@@ -7,4 +7,5 @@ export default {
   codeDayDatas: null,
   project: '',
   topbar: '',
+  sidebar: '',
 };

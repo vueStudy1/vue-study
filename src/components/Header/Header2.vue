@@ -1,7 +1,8 @@
 <template>
   <b-overlay :show="show" rounded="sm" blur='' opacity="0.1">
     <b-navbar type="dark" variant="dark">
-      <b-navbar-brand @click.stop="active = 'Youngkyun'; $router.push({name : 'Youngkyun'});" class="mx-2">{{project}}</b-navbar-brand>
+      <!-- <b-navbar-brand @click.stop="active = 'Youngkyun'; $router.push({name : 'Youngkyun'});" class="mx-2">{{project}}</b-navbar-brand> -->
+      <b-navbar-brand class="mx-2">{{project}}</b-navbar-brand>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
@@ -88,7 +89,7 @@ import { mapGetters } from "vuex";
   computed: mapGetters({
     project: 'common/getProject',
     topbar: 'common/getTopbar',
- }),
+  }),
 })
 export default class Header2 extends Vue {
   project!: string;

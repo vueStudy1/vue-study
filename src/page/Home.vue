@@ -1,411 +1,115 @@
 <template>
-  <div class="row m-1">
-    <!-- <IncludedStocks @add="onAdd"/> -->
+  <div class="p-2">
+    <b-button size="sm" @click="onAdd"><b-icon icon="plus" aria-hidden="true"></b-icon> add</b-button>
+    <b-button size="sm" @click="onRefresh" class="mx-1"><b-icon icon="arrow-clockwise" aria-hidden="true"></b-icon> refresh</b-button>
+    <b-button size="sm" @click="onSave"><b-icon icon="cloud-upload" aria-hidden="true"></b-icon> save</b-button>
+    <b-button size="sm" @click="onSave"><b-icon icon="cloud-upload" aria-hidden="true"></b-icon> save</b-button>
 
-    <template v-for="option, index in options">
-      <DaumTimes :option="option" :key="index" @comparision="onComparision"/>
-    </template>
-
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-    <b-card class="col-1 p-2">
-      <b-card-text><span class="name">카카오 뱅크</span></b-card-text>
-      <b-card-text><span class="tradePrice">59,000</span> <span class="changePrice">+3,100</span> <span class="changeRate">5.55%</span></b-card-text>
-      <b-card-text><span class="label">거래량</span> <span class="accTradeVolume">1,612,095</span></b-card-text>
-      <b-card-text><span class="label">거래대금</span> <span class="accTradePrice">92,877</span></b-card-text>
-      <b-card-text><span class="label">외국인</span> <span class="foreignRatio">5.28%</span></b-card-text>
-    </b-card>
-
-
-    <b-table striped hover :items="datas" :fields="fields" style="box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 1px 3px 1px;
-      font-size: 10px;
-      display: block;
-      padding: 13px;
-      border-radius: 4px;
-      background: rgb(255, 255, 255);">
-      <template #cell(changePrice)="data">
-        <span style="color: #dc3545;" v-if="data.item.changePrice > 0">{{ data.item.changePrice }}</span>
-        <span style="color: #007bff" v-else>{{ data.item.changePrice }}</span>
+    <b-table :items="items" :fields="fields" class="mt-3 align-self-center" dark striped borderless hover small>
+      <template #cell(no)="row">
+        <div>{{ row.index + 1 }}</div>
       </template>
-      <template #cell(changeRate)="data">
-        <span style="color: #dc3545;" v-if="data.item.changeRate > 0">{{ data.item.changeRate }}</span>
-        <span style="color: #007bff" v-else>{{ data.item.changeRate }}</span>
+      <template #cell(registrationDate)="data">
+        <b-form-datepicker v-model="data.item.registrationDate" size="sm" locale="kr" :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"/>
+      </template>
+      <template #cell(requirements)="data">
+        <b-input v-model="data.item.requirements" size="sm"/>
+      </template>
+      <template #cell(manager)="data">
+        <b-dropdown :text="data.item.manager" size="sm">
+          <b-dropdown-item @click="data.item.manager = '정영균'">정영균</b-dropdown-item>
+          <b-dropdown-item @click="data.item.manager = '최진희'">최진희</b-dropdown-item>
+        </b-dropdown>
+      </template>
+      <template #cell(state)="data">
+        <b-dropdown :text="data.item.state" size="sm">
+          <b-dropdown-item @click="data.item.state = '시작되지 않음'">시작되지 않음</b-dropdown-item>
+          <b-dropdown-item @click="data.item.state = '진행중'">진행중</b-dropdown-item>
+          <b-dropdown-item @click="data.item.state = '완료'">완료</b-dropdown-item>
+          <b-dropdown-item @click="data.item.state = '중지'">중지</b-dropdown-item>
+        </b-dropdown>
+      </template>
+      <template #cell(dueDate)="data">
+        <b-form-datepicker v-model="data.item.dueDate" size="sm" locale="kr" :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"/>
+      </template>
+      <template #cell(endDate)="data">
+        <b-form-datepicker v-model="data.item.endDate" size="sm" locale="kr" :date-format-options="{ year: 'numeric', month: 'numeric', day: 'numeric' }"/>
+      </template>
+      <template #cell(writer)="data">
+        <b-dropdown :text="data.item.writer" size="sm">
+          <b-dropdown-item @click="data.item.writer = '정영균'">정영균</b-dropdown-item>
+          <b-dropdown-item @click="data.item.writer = '최진희'">최진희</b-dropdown-item>
+        </b-dropdown>
+      </template>
+
+      <template #cell()="row">
+        <b-button @click="row.toggleDetails" size="sm">상세보기</b-button>
+      </template>
+      <template #row-details="row">
+        <b-form-textarea v-model="row.item.note" size="sm" placeholder="Enter something..." rows="3" max-rows="6"/>
       </template>
     </b-table>
-
-    <!-- <table class="table" caption-top responsive sticky-header>
-      <b-thead>
-        <b-tr>
-          <template v-for="field, index in fields">
-          <b-th :key="index">{{field.label}}</b-th>
-          </template>
-        </b-tr>
-      </b-thead>
-      <b-tbody>
-        <template v-for="option, index in options">
-          <DaumTimes :option="option" :key="index" @comparision="onComparision"/>
-        </template>
-      </b-tbody>
-    </table> -->
   </div>
 </template>
 
 <style scoped>
-.row {
-  --bs-gutter-x: 0;
-}
-.card {
-  background-color: rgb(49, 49, 49);
-  color: rgba(255, 255, 255, 0.705);
-}
-.card:hover {
-  background-color: rgb(58, 58, 58);
-  cursor: pointer;
-}
-.card-body {
-  padding: 0;
-}
-p {
-  margin-bottom: 0;
-  line-height: 11px;
-}
-.label {
-  font-size: 10px;
-  color: rgb(136, 136, 136);
-}
-.accTradePrice { /* 거래대금 */
-  font-size: 11px;
-}
-.accTradeVolume { /* 거래량 */
-  font-size: 11px;
-}
-.changePrice { /* 전일비 */
-  font-size: 11px;
-  color: rgb(226, 101, 101);
-}
-.changeRate { /* 등락률 */
-  font-size: 11px;
-  color: rgb(226, 101, 101);
-}
-.code { /* 종목코드 */
-  font-size: 10px;
-}
-.foreignRatio { /* 외국인 */
-  font-size: 11px;
-}
-.marketCap { /* 시가총액 */
-  font-size: 10px;
-}
-.name {
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: bold;
-}
-.symbolCode { /* 종목코드 */
-  font-size: 13px;
-} 
-.tradePrice { /* 현재가 */
-  font-size: 13px;
-  line-height: 13px;
-  font-weight: bold;
-  color: rgb(226, 101, 101);
+table {
+  vertical-align: middle !important;
 }
 </style>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'vue-property-decorator';
+import { Vue, Component } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 
-import DaumTimes from '@/components/Button/DaumTimes.vue'
-import { forEach } from 'lodash';
-// import { forEach } from 'lodash';
-
-const FIELDS = [
-  { key: 'name', label: '종목' },
-  { key: 'accTradePrice', label: '거래대금' },
-  { key: 'todayVolume', label: '어제 거래량' },
-  { key: 'yesterdayVolume', label: '오늘 거래량' },
-  { key: 'accTradeVolume', label: '거래량' },
-  /* { key: 'change', label: '?' }, */
-  { key: 'changePrice', label: '전일비' },
-  { key: 'changeRate', label: '등락률' },
-  /* { key: 'date', label: '날짜' }, */
-  /* { key: 'exchangeCountry', label: '나라?' }, */
-  /* { key: 'highPrice', label: '고가' }, */
-  /* { key: 'listedSharesCount', label: '' }, */
-  /* { key: 'lowPrice', label: '저가' }, */
-  /* { key: 'openingPrice', label: '시가' }, */
-  /* { key: 'periodTradePrice', label: '거래대금' }, */
-  /* { key: 'periodTradeVolume', label: '거래량' }, */
-  /* { key: 'prevClosingPrice', label: '고가' }, */
-  /* { key: 'symbolCode', label: '종목 코드' }, */
-  { key: 'yesterdayTradePrice', label: '어제 현재가' },
-  { key: 'tradePrice', label: '현재가' },
-  { key: 'tradeTime', label: '시간' },
-];
+import { FireStore03 } from '@/common';
 
 @Component({
  components: {
-   DaumTimes,
  },
  computed: mapGetters({
-   selected: 'common/getSelected',
  }),
 })
-export default class Home extends Vue {
-  selected!: any;
+export default class Youngkyun extends Vue {
+  fireStore: any = null;
+  fields: Array<{key?: string, label: string}> = [
+    { key: 'no', label: 'no'},
+    { key: 'registrationDate', label: '등록일'},
+    { key: 'requirements', label: '요구사항 & 이슈사항'},
+    { key: 'manager', label: '담당자'},
+    { key: 'state', label: '진행구분'},
+    { key: 'dueDate', label: '예정일'},
+    { key: 'endDate', label: '종료일'},
+    { key: 'writer', label: '작성자'},
+    { label: '상세'},
+  ];
+  options: Array<{value: string | null, text: string, disabled?: boolean}> = [
+    { value: null, text: 'Please select an option' },
+    { value: '정영균', text: '정영균' },
+    { value: '최진희', text: '최진희' },
+    { value: 'd', text: 'This one is disabled', disabled: true }
+  ];
+  items: any = [];
 
-  fields: any = FIELDS;
-
-  daumTime: any = null;
-  daumTimes: any = [];
-
-  options: any = [];
-
-  datas: any = [];
-
-  @Watch('selected', { deep: true })
-  onSelected(newVal: any) {
-    this.options = [];
-    forEach(newVal.codes, (code) => {
-      this.options.push({
-        value: code.symbolCode,
-        text: code.name,
-      });
-    });
+  async created() {
+    this.fireStore = new FireStore03();
+    this.getData();
   }
 
-  onComparision(el: any) {
-    let apples:any = [];
-    apples = this.datas.filter((element: any) => {
-      if(element.name != el.name)  {
-        return true;
-      }
-    });
-
-    if(apples == undefined) {
-      apples = [];
-    }
-
-    apples.push(el);
-    apples.sort(function (a: any, b: any) {
-      return b.accTradeVolume - a.accTradeVolume;
-    });
-
-    this.datas = apples;
+  onAdd() {
+    this.items.push({registrationDate: '', requirements: '', manager: '', state: '', dueDate: '', endDate: '', writer: '', note: ''});
   }
-
-
-  // async mounted() {
-  //   const res = (await this.$store.dispatch('common/krxKospi')).data.OutBlock_1;
-
-  //   forEach(res, (re) => {
-  //     this.options.push({
-  //       value: re.symbolCode,
-  //       text: re.name,
-  //     });
-  //   });
-  // }
+  onRefresh() {
+    this.getData();
+  }
+  onSave() {
+    // 저장할때는 반드시 상세보기 닫기하고 저장되어야 함.
+    this.fireStore.setData(this.items);
+    return;
+  }
+  
+  async getData() {
+    this.items = (await this.fireStore.getData()).data;
+  }
 }
 </script>

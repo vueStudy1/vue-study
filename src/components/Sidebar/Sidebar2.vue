@@ -3,12 +3,12 @@
     <nav>
       <div class="navs">
         <div class="nav-panel">
-          <template v-for="sidebar, index in sidebars">
-            <div class="nav" :key="`${sidebar}_${index}`">
-              <div class="link">{{sidebar}}</div>
+          <template v-for="_sidebar, index in sidebars">
+            <div class="nav" :key="`${_sidebar}_${index}`" @click.stop="selecteSidebar(_sidebar)" :active="_topbar == topbar">
+              <div class="link">{{_sidebar}}</div>
             </div>
-            <context-menu :divided="true" :key="sidebar" @select="deleteSidebar(sidebar)">
-              <context-menu-item>{{sidebar}} 상단바 제거</context-menu-item>
+            <context-menu :divided="true" :key="_sidebar" @select="deleteSidebar(_sidebar)">
+              <context-menu-item>{{_sidebar}} 상단바 제거</context-menu-item>
             </context-menu>
           </template>
           <div class="nav" v-if="project != '' && topbar != ''">
@@ -76,7 +76,7 @@ nav .navs .nav i {
   margin-top: 5px;
   width: 20px;
   height: 14px;
-  vertical-align: top;
+  /* vertical-align: top; */
   text-align: center;
 }
 nav .navs .nav .link {
@@ -108,18 +108,18 @@ import { mapGetters } from 'vuex';
   computed: mapGetters({
     project: 'common/getProject',
     topbar: 'common/getTopbar',
+    sidebar: 'common/getSidebar',
  }),
 })
 export default class Sidebar2 extends Vue {
   project!: string;
   topbar!: string;
+  sidebar!: string;
 
   show: boolean = false;
   fireStore: any = null;
 
   inputSidebar: string = '';
-
-  sidebar: string = '';
   sidebars: any = [];
 
   @Watch('project')
@@ -163,5 +163,8 @@ export default class Sidebar2 extends Vue {
     this.show = false;
   }
 
+  selecteSidebar(sidebar: string) {
+    this.$store.commit('common/setSidebar', sidebar);
+  }
 }
 </script>

@@ -37,7 +37,7 @@ article {
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { AppHeader, AppHeader2, AppSidebar, AppSidebar2, AppSidebarHoon, AppSidebarJaeeun, AppSidebarJian, AppSidebarJiwon, AppSidebarSewon, AppSidebarSoo, AppSidebarYoungkyun } from '../components/index';
+import { AppHeader, AppHeader2, AppSidebar, AppSidebar2 } from '../components/index';
 
 @Component({
   components: {
@@ -45,13 +45,6 @@ import { AppHeader, AppHeader2, AppSidebar, AppSidebar2, AppSidebarHoon, AppSide
     AppHeader2,
     AppSidebar,
     AppSidebar2,
-    AppSidebarHoon,
-    AppSidebarJaeeun,
-    AppSidebarJian,
-    AppSidebarJiwon,
-    AppSidebarSewon,
-    AppSidebarSoo,
-    AppSidebarYoungkyun,
   },
 })
 export default class Full extends Vue {
